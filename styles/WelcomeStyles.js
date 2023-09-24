@@ -1,0 +1,94 @@
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+const guidelineBaseWidth = 375;
+const guidelineBaseHeight = 812;
+
+export const horizontalScale = (size) => (width / guidelineBaseWidth) * size;
+export const verticalScale = (size) => (height / guidelineBaseHeight) * size;
+export const moderateScale = (size, factor = 0.5) => size + (horizontalScale(size) - size) * factor;
+
+export const wstyles = StyleSheet.create({
+    // Welcome Page Styles
+    ageContainer: {
+        marginLeft: horizontalScale(25),
+        marginTop: verticalScale(20),
+    },
+    ageLabel: {
+        fontSize: moderateScale(20),
+        fontWeight: 'bold',
+        marginRight: horizontalScale(10),
+        marginBottom: verticalScale(10),
+        color: 'white',
+    },
+    ageInput: {
+        fontSize: moderateScale(20),
+        borderWidth: 1,
+        borderColor: 'white',
+        borderRadius: 5,
+        width: '60%',
+        height: verticalScale(40),
+        paddingLeft: horizontalScale(10),
+        color: 'white',
+    },
+
+    mobilityContainer: {
+        marginTop: verticalScale(20),
+        marginLeft: horizontalScale(25),
+        width: horizontalScale(300),
+        zIndex: 1,
+    },
+
+    visionContainer: {
+        marginTop: verticalScale(20),
+        marginLeft: horizontalScale(25),
+        width: horizontalScale(300),
+    },
+
+    hearingContainer: {
+        marginTop: verticalScale(20),
+        marginLeft: horizontalScale(25),
+        width: horizontalScale(300),
+    },
+
+    checkbox: {
+        marginTop: verticalScale(10),
+        borderWidth: 2,
+        borderColor: 'white',
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    checkboxLabel: {
+        color: 'white',
+        fontSize: moderateScale(20),
+        marginTop: verticalScale(10),
+        marginLeft: horizontalScale(10),
+    },
+
+    submitContainer: {
+        marginTop: verticalScale(20),
+        width: '100%',
+        alignItems: 'center',
+    },
+
+    submitButton: {
+        backgroundColor: '#121212',
+        borderWidth: 1,
+        borderColor: 'white',
+        borderRadius: 5,
+        width: horizontalScale(300),
+        height: verticalScale(40),
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    submitText: {
+        color: 'white',
+        fontSize: moderateScale(20),
+        fontWeight: 'bold',
+    },
+
+});
