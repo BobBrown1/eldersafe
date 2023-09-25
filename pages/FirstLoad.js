@@ -144,7 +144,6 @@ export default function FirstLoad({navigation}) {
                             const personalInfo = {age: age , mobility: value, vision: vision, hearing: hearing};
                             AsyncStorage.setItem('personalInfo', JSON.stringify(personalInfo));
                             navigation.navigate("Home")
-                            navigation.navigate('RoomScreens');
                         }
                     }}>
                         <Text style={wstyles.submitText}>Continue</Text>

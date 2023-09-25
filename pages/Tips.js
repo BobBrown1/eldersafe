@@ -136,13 +136,13 @@ const Products = () => {
                             for (let k = 0; k < roomProducts.length; k++) {
                                 if (roomProducts[k].hazardID == roomQuestionNumbers[roomList[i].type][j]) {
                                     if (exclusions.some(r => r.id == j && r.room == roomList[i].type)) {
-                                        const exclusion = exclusions.find(r => r.id == j);
+                                        const exclusion = exclusions.find(r => r.id == j && r.room == roomList[i].type);
                                         if (personalInfo[exclusion.exclusion] == "true" || personalInfo[exclusion.exclusion] == true || personalInfo[exclusion.exclusion] == "walker" || personalInfo[exclusion.exclusion] == "cane" || personalInfo[exclusion.exclusion] == "wheelchair") {
-                                            if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].some(r => r.id == j)) {
+                                            if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].some(r => r.id == j && r.room == roomList[i].type)) {
                                                 roomProducts[k].importance = 'high';
-                                            } else if (personalInfo.vision && important['Vision'].some(r => r.id == j)) {
+                                            } else if (personalInfo.vision && important['Vision'].some(r => r.id == j && r.room == roomList[i].type)) {
                                                 roomProducts[k].importance = 'high';
-                                            } else if (personalInfo.hearing && important['Hearing'].some(r => r.id == j)) {
+                                            } else if (personalInfo.hearing && important['Hearing'].some(r => r.id == j && r.room == roomList[i].type)) {
                                                 roomProducts[k].importance = 'high';
                                             } else if (roomList[i].primary == true || roomList[i].primary == 'true') {
                                                 roomProducts[k].importance = 'medium';
@@ -151,11 +151,11 @@ const Products = () => {
                                             }
                                         }
                                     } else {
-                                        if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].some(r => r.id == j)) {
+                                        if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].some(r => r.id == j && r.room == roomList[i].type)) {
                                             roomProducts[k].importance = 'high';
-                                        } else if (personalInfo.vision && important['Vision'].some(r => r.id == j)) {
+                                        } else if (personalInfo.vision && important['Vision'].some(r => r.id == j && r.room == roomList[i].type)) {
                                             roomProducts[k].importance = 'high';
-                                        } else if (personalInfo.hearing && important['Hearing'].some(r => r.id == j)) {
+                                        } else if (personalInfo.hearing && important['Hearing'].some(r => r.id == j && r.room == roomList[i].type)) {
                                             roomProducts[k].importance = 'high';
                                         } else if (roomList[i].primary == true || roomList[i].primary == 'true') {
                                             roomProducts[k].importance = 'medium';

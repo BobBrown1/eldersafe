@@ -185,32 +185,14 @@ export function RoomEditor({route, navigation}) {
     return (
         <SafeAreaView style={styles.container}>
             {Platform.OS === 'android' && <StatusBar backgroundColor="#121212" barStyle="light-content" />}
-            <View style= {{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#121212',
-                width: '100%',
-                borderBottomWidth: 1,
-                borderBottomColor: '#24a0ed',
-                marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-            }} >
-                <TouchableOpacity style={{
-                    position: 'absolute',
-                    left: 0,
-                    marginLeft: horizontalScale(10),
-                    marginTop: verticalScale(10),
-
-                }} onPress={() => navigation.navigate("Rooms")}>
+            <View style= {[styles.roomHeaderCont, {marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,}]} >
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate("Rooms")}>
                         <FontAwesome name="arrow-left" size={30} color="#24a0ed" />
                 </TouchableOpacity>
-                <Text style={{
-                    color: 'white',
-                    fontWeight: 'bold',
-                    fontSize: moderateScale(25),
-                    textAlign: 'center',
-                    marginVertical: verticalScale(10),
-                }}>{roomType}</Text>
+                <Text style={styles.roomHeaderText}>{roomType}</Text>
+                <TouchableOpacity style={styles.saveButton} onPress={() => {saveRoomData()}}>
+                    <FontAwesome name="check" size={30} color="#24a0ed" />
+                </TouchableOpacity>
             </View>
             <ScrollView contentContainerStyle={{
                 backgroundColor: '#121212',
@@ -285,18 +267,19 @@ export function RoomEditor({route, navigation}) {
 export function RoomSelect({navigation}) {
     return (
 
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, {marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,}]}>
             {Platform.OS === 'android' && <StatusBar backgroundColor="#121212" barStyle="light-content" />}
-            <View style={[styles.selectRoomHeaderContainer, {paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 70 : 10}]}>
+            <View style={styles.roomHeaderCont} >
                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate("Rooms")}>
-                    <FontAwesome name="arrow-left" size={30} color="#24a0ed" />
+                        <FontAwesome name="arrow-left" size={30} color="#24a0ed" />
                 </TouchableOpacity>
-                <Text style={styles.roomHeader}>Add a Room</Text>
+                <Text style={styles.roomHeaderText}>Add a Room</Text>
             </View>
             <FlatList
                 ListHeaderComponent={
                     <Text style={[styles.inputHeader, {fontWeight: 'normal'}]}>Select a Room Type</Text>
                 }
+                style={{}}
                 data={[{"roomType": "Bedroom", "roomIcon": "bed"}, {"roomType": "Bathroom", "roomIcon": "bath"}, {"roomType": "Living Room", "roomIcon": "tv"}, {"roomType": "Kitchen", "roomIcon": "cutlery"}, {"roomType": "Stairway", "roomIcon": "signal"}, {"roomType": "Home Exterior/Garage", "roomIcon": "car"}]}
                 renderItem={({ item }) =>
                 <TouchableOpacity style={styles.room} onPress={() => {navigation.navigate("RoomEditor", {roomType: item.roomType, roomIcon: item.roomIcon}) }} >

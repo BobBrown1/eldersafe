@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     },
 
     subheader: {
-      marginLeft: verticalScale(20),
+      marginHorizontal: verticalScale(20),
       marginTop: verticalScale(10),
       fontSize: moderateScale(20),
       color: 'white',
@@ -83,13 +83,14 @@ export const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#121212',
+      backgroundColor: '#666666',
       borderRadius: moderateScale(10),
-      borderWidth: moderateScale(1),
+      borderWidth: moderateScale(0.5),
       borderColor: 'white',
-      marginRight: horizontalScale(10),
-      marginLeft: horizontalScale(10),
-      paddingVertical: verticalScale(10),
+      marginBottom: 3.5,
+      marginRight: 15,
+      marginLeft: 15,
+      paddingVertical: verticalScale(15),
       paddingHorizontal: horizontalScale(10),
     },
 
@@ -163,12 +164,15 @@ export const styles = StyleSheet.create({
       textDecorationLine: 'underline',
     },
 
-    selectRoomHeaderContainer: {
-      flex: 1,
+    roomHeaderCont: {
+      flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      position: 'relative', 
-      },
+      backgroundColor: '#121212',
+      width: '100%',
+      borderBottomWidth: 1,
+      borderBottomColor: '#24a0ed',
+    },
 
     roomHeader: {
       position: 'absolute',
@@ -178,20 +182,26 @@ export const styles = StyleSheet.create({
       color: 'white',
     },
 
+    roomHeaderText: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: moderateScale(25),
+      textAlign: 'center',
+      marginVertical: verticalScale(10),
+    },
+
     backButton: {
       position: 'absolute',
       left: 0,
-      marginLeft: horizontalScale(25),
-    },
-
-    backButton2: {
-      marginLeft: horizontalScale(25),
+      marginLeft: horizontalScale(10),
+      marginTop: verticalScale(10),
     },
 
     saveButton: {
       position: 'absolute',
       right: 0,
-      marginRight: horizontalScale(25),
+      marginRight: horizontalScale(10),
+      marginTop: verticalScale(10),
     },
 
     saveText: {
