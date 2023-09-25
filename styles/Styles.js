@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#666666',
+      backgroundColor: '#4a4a4a',
       borderRadius: moderateScale(10),
       borderWidth: moderateScale(0.5),
       borderColor: 'white',
