@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "433303167498",
+    "project_id": "eldersafe-12817",
+    "storage_bucket": "eldersafe-12817.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433303167498:android:3805d727b62f0b323bf5f3",
+        "android_client_info": {
+          "package_name": "com.bobbrown.eldersafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAegKc60-tXn5szeNBJe1i6CxCPwpD0M54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

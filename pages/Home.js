@@ -186,7 +186,9 @@ export default function Home({navigation}) {
                     <Text style={styles.scoreLabelSubtext}>Tap to share</Text>
                 </TouchableOpacity>
                 <View style={styles.dashboard}>
-                    <TouchableOpacity style={[styles.dashboardButton, {marginRight: 7.5}]} onPress={() => navigation.navigate('RoomScreens')}>
+                    <TouchableOpacity style={[styles.dashboardButton, {marginRight: 7.5}]} onPress={() => {
+                        navigation.navigate('RoomScreens')
+                    }}>
                         <Text style={styles.dashboardNumber}>{numRooms}</Text>
                         <Text style={styles.dashboardText}>Rooms</Text>
                     </TouchableOpacity>

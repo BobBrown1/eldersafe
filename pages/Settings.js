@@ -132,7 +132,7 @@ export default function Settings({navigation}) {
                                 <Text style={wstyles.submitText}>Save</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={wstyles.submitContainer}>
+                        {/* <View style={wstyles.submitContainer}>
                             <TouchableOpacity style={wstyles.submitButton} onPress={() => {
                                 AsyncStorage.removeItem('personalInfo');
                                 AsyncStorage.removeItem('myRooms');
@@ -141,7 +141,7 @@ export default function Settings({navigation}) {
                             }}>
                                 <Text style={wstyles.submitText}>Reset</Text>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
                 </ScrollView>
                 <ExpoStatusBar style="light" translucent={false} />
             </SafeAreaView>

@@ -186,7 +186,7 @@ export function RoomEditor({route, navigation}) {
         <SafeAreaView style={styles.container}>
             {Platform.OS === 'android' && <StatusBar backgroundColor="#121212" barStyle="light-content" />}
             <View style= {[styles.roomHeaderCont, {marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,}]} >
-                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate("Rooms")}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate(previouslyAnswered != undefined && previouslyAnswered != null ? "Rooms" : "RoomSelection")}>
                         <FontAwesome name="arrow-left" size={30} color="#24a0ed" />
                 </TouchableOpacity>
                 <Text style={styles.roomHeaderText}>{roomType}</Text>

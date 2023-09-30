@@ -7,7 +7,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { verticalScale, horizontalScale, moderateScale } from './styles/Styles';
-import * as SplashScreen from 'expo-splash-screen'
+import * as SplashScreen from 'expo-splash-screen';
+import { vexo } from 'vexo-analytics';
 
 import {styles} from './styles/Styles'
 import Rooms, {RoomSelect, RoomEditor, RoomAdded, RoomReport} from './pages/Rooms';  
@@ -21,7 +22,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
+vexo('55d73bb7-ad39-43fc-8330-602e831bb400');
 
 function HomeScreens({navigation, route}) {
   return (
@@ -176,7 +177,7 @@ SplashScreen.preventAutoHideAsync();
 
 setTimeout(() => {
   SplashScreen.hideAsync();
-}, 3000);
+}, 2000);
 
 export default class App extends React.Component {
 

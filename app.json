@@ -2,7 +2,7 @@
   "expo": {
     "name": "ElderSafe",
     "slug": "ElderSafe",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -16,14 +16,16 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.bobbrown.eldersafe"
+      "bundleIdentifier": "com.bobbrown.eldersafe",
+      "buildNumber": "1.0.2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#722890"
       },
-      "package": "com.bobbrown.eldersafe"
+      "package": "com.bobbrown.eldersafe",
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -32,6 +34,11 @@
       "eas": {
         "projectId": "1bc4a660-8de6-4b68-b891-f2d1ccf2d0d4"
       }
-    }
+    },
+    "plugins": [
+        [
+          "expo-build-properties"
+        ]
+      ]
   }
 }
