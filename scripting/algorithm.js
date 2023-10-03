@@ -130,77 +130,77 @@ export const hazardsDict = {
 
 export const products = {
     "Bedroom": [
-        {name: "Night Light", link: "https://www.amazon.com/s?k=senior+night+light", hazardID: 2,
+        {name: "Night Light", link: "https://amzn.to/46dzA3P", hazardID: 2,
         description: "Small, plug-in LEDs lights turn on automatically when they sense motion. Perfect for lighting up hallways, stairways, and bathrooms at night.",
         image: require("../assets/products/night-light.png")
     },
-        {name: "Flash Light", link: "https://www.amazon.com/s?k=flashlight", hazardID: 3,
+        {name: "Flash Light", link: "https://amzn.to/3PEmA02", hazardID: 3,
         description: "Rechargeable LED flashlights are easy to use and perfect for power outages.",
         image: require("../assets/products/flashlight.png")
     },
-        {name: "Bed Rail", link: "https://www.amazon.com/s?k=senior+bed+rail", hazardID: 0,
+        {name: "Bed Rail", link: "https://amzn.to/45a34OI", hazardID: 0,
         description: "A bed rail provides support when getting in and out of bed.",
         image: require("../assets/products/bed-rail.png")
     },
     ],
     "Bathroom": [
-        {name: "Grab Bars", link: "https://www.amazon.com/s?k=senior+grab+bars", hazardID: 0,
+        {name: "Grab Bars", link: "https://amzn.to/3PFKDeX", hazardID: 0,
         description: "A set of grab bars can be installed in the shower and near the toilet.",
         image: require("../assets/products/grab-bars.png")
     },
-        {name: "Non-Slip Mat", link: "https://www.amazon.com/s?k=bathtub+non+slip+mat", hazardID: 1,
+        {name: "Non-Slip Mat", link: "https://amzn.to/46jfXr1", hazardID: 1,
         description: "A non-slip mat can be placed in the shower to prevent slipping.",
         image: require("../assets/products/bathtub-non-slip.png")
     },
-        {name: "Shower Chair", link: "https://www.amazon.com/s?k=senior+shower+chair", hazardID: 2,
+        {name: "Shower Chair", link: "https://amzn.to/48zCSzY", hazardID: 2,
         description: "A shower chair can be used to sit down while showering.",
         image: require("../assets/products/shower-chair.png")
     },
-        {name: "Raised Toilet Seat", link: "https://www.amazon.com/s?k=senior+raised+toilet+seat", hazardID: 3,
+        {name: "Raised Toilet Seat", link: "https://amzn.to/3ZUNSnL", hazardID: 3,
         description: "A toilet seat extension makes it easier to sit down and stand up.",
         image: require("../assets/products/toilet-seat.png")
     },
-        {name: "Non-Slip Floor Mat", link: "https://www.amazon.com/s?k=bathroom+non+slip+mat", hazardID: 4,
+        {name: "Non-Slip Floor Mat", link: "https://amzn.to/3ZCieuV", hazardID: 4,
         description: "A non-slip mat can be placed directly outside of the shower to prevent slipping.",
         image: require("../assets/products/bathroom-non-slip.png")
     }
     ],
     "Living Room": [
-        {name: "Senior Phone", link: "https://www.amazon.com/s?k=senior+phone", hazardID: 3,
+        {name: "Senior Phone", link: "https://amzn.to/48FWwdJ", hazardID: 3,
         description: "A phone with large buttons and a bright screen is easier to use than regular phones.",
         image: require("../assets/products/senior-phone.png")
     },
-        {name: "Visual Smoke Detector", link: "https://www.amazon.com/s?k=hearing+impaired+smoke+detector", hazardID: 4,
+        {name: "Visual Smoke Detector", link: "https://amzn.to/3ZJQxk2", hazardID: 4,
         description: "A smoke detector that flashes light in addition to sounding an alarm is easier to notice.",
         image: require("../assets/products/smoke-detector.png")
     }
     ],
     "Kitchen": [
-        {name: "Non-Slip Mat", link: "https://www.amazon.com/s?k=non+slip+mat", hazardID: 0,
+        {name: "Non-Slip Mat", link: "https://amzn.to/3ZDRI4o", hazardID: 0,
         description: "A non-slip mat can be placed in front of the sink and stove to prevent slipping.",
         image: require("../assets/products/kitchen-non-slip.png")
     },
-        {name: "Easy-to-Use Utensils", link: "https://www.amazon.com/s?k=senior+utensils", hazardID: 4,
+        {name: "Easy-to-Use Utensils", link: "https://amzn.to/3F5eJDT", hazardID: 4,
         description: "Special utensils with larger handles are easier to use and hold.",
         image: require("../assets/products/utensils.png")
     },
     ],
     "Stairway": [
-        {name: "Non-Slip Treads", link: "https://www.amazon.com/s?k=non+slip+treads", hazardID: 1,
+        {name: "Non-Slip Treads", link: "https://amzn.to/3tdjRTz", hazardID: 1,
         description: "Non-slip treads can be placed on steps to prevent slipping.",
         image: require("../assets/products/stair-treads.png")
     },
-        {name: "Bright Tape", link: "https://www.amazon.com/s?k=bright+tape+for+stairs", hazardID: 3,
+        {name: "Bright Tape", link: "https://amzn.to/3rEVspJ", hazardID: 3,
         description: "Bright tape can be placed on the edges of steps to improve visibility.",
         image: require("../assets/products/bright-tape.png")
     }
     ],
     "Home Exterior/Garage": [
-        {name: "Handrails", link: "https://www.amazon.com/s?k=senior+grab+bars", hazardID: 1,
+        {name: "Handrails", link: "https://amzn.to/3RJSivB", hazardID: 1,
         description: "Handrails can be installed near steps for extra support.",
         image: require("../assets/products/grab-bars.png")
     },
-        {name: "Exterior Lighting", link: "https://www.amazon.com/s?k=motion+sensor+outdoor+lights", hazardID: 2,
+        {name: "Exterior Lighting", link: "https://amzn.to/3F5eTLv", hazardID: 2,
         description: "Motion sensor exterior lighting can be installed near entrances/exits for easier navigation at night.",
         image: require("../assets/products/exterior-lighting.png")
     },

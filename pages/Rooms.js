@@ -7,6 +7,7 @@ import { verticalScale, horizontalScale, moderateScale } from '../styles/Styles'
 import {fetchRooms, addRoom, deleteRoomData} from '../scripting/rooms';
 import Checkbox from 'expo-checkbox';
 import {questions, hazardsDict} from '../scripting/algorithm';
+import * as amplitude from '@amplitude/analytics-react-native';
 
 export function RoomReport({route, navigation}) {
     const {roomType} = route.params;
@@ -154,6 +155,13 @@ export function RoomEditor({route, navigation}) {
                     answers.push(selected[i].id);
                 } 
             }
+            amplitude.track('Room Add', {
+                roomType: roomType,
+                roomName: fullRoomText,
+                answers: answers,
+                primary: isPrimary,
+                id: id,
+            })
             addRoom(roomType, fullRoomText, answers, isPrimary, id);
             previouslyAnswered != undefined ? navigation.navigate("Rooms") : navigation.navigate("RoomAdded", {roomType: roomType, roomName: fullRoomText, answers: answers, primary: isPrimary, id: id});
     }

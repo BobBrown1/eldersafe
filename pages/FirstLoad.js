@@ -9,6 +9,7 @@ import { verticalScale, horizontalScale, moderateScale } from '../styles/Styles'
 import {fetchRooms, addRoom, deleteRoomData} from '../scripting/rooms';
 import Checkbox from 'expo-checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as amplitude from '@amplitude/analytics-react-native';
 
 export default function FirstLoad({navigation}) {
     const [open, setOpen] = useState(false);
@@ -140,6 +141,9 @@ export default function FirstLoad({navigation}) {
                         if (age != '' && age != null && age != undefined && age.trim() != '' && value != '' && value != null && value != undefined) {
                             setAgeError(null);
                             setMobilityError(null);
+
+                            amplitude.track('First Load', {age: age, mobility: value, vision: vision, hearing: hearing});
+
                             AsyncStorage.setItem('firstLoad', 'false');
                             const personalInfo = {age: age , mobility: value, vision: vision, hearing: hearing};
                             AsyncStorage.setItem('personalInfo', JSON.stringify(personalInfo));
