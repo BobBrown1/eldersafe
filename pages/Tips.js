@@ -52,11 +52,7 @@ export class Hazards extends React.Component {
             const personalInfo = JSON.parse(items[1][1]);
             if (roomList == null || roomList == undefined || roomList == [] || roomList == '[]' || roomList.length == 0) {
                 this.setState({hazards:
-                    [
-                        {
-                            importance: "Hazards", 
-                            data: [{room: 'Hazards', hazard: 'You currently have no hazards in your home!', icon: 'check'}]}
-                ]});
+                    []});
             } else {
                 const allHazards = [
                     {importance: 'High Risk', data: []},
@@ -108,10 +104,7 @@ export class Hazards extends React.Component {
                 
                 if (allHazards[0].data.length == 0 && allHazards[1].data.length == 0 && allHazards[2].data.length == 0) {
                     this.setState({hazards:
-                        [{
-                            importance: "Hazards", 
-                            data: [{room: 'Hazards', hazard: 'You currently have no hazards in your home!', icon: 'check'}]}
-                        ]});
+                        []});
                 } else {
                     const filteredHazards = allHazards.filter((section) => {
                         return section.data.length > 0;
@@ -125,6 +118,7 @@ export class Hazards extends React.Component {
 
         return (
             <View style={styles.hazardContainer}>
+                {hazards.length == 0 && <Text style={styles.noProductsText}>No hazards have been identified in your home!</Text>}
                 <SectionList
                     sections={hazards}
                     keyExtractor={(item, index) => item + index}
@@ -226,6 +220,7 @@ const Products = () => {
                     );
                 }}
                 renderSectionHeader={({section}) => <Text style={styles.tipSectionHeader}>{section.title}</Text>}
+                ListFooterComponent={tipsList.length > 0 && <Text style={styles.affiliateNote}>* Products may contain affiliate links</Text>}
                 keyExtractor={(item, index) => index}
                 style={styles.tipsList}
             />

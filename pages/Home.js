@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, ScrollView, SafeAreaView, StatusBar, Share} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, ScrollView, SafeAreaView, StatusBar, Share, Platform} from 'react-native';
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React, {useState} from 'react';
 import {horizontalScale, styles, verticalScale} from '../styles/Styles'
@@ -31,6 +31,8 @@ export default function Home({navigation}) {
                 if (roomList == null || roomList == undefined || roomList == [] || roomList == '[]' || roomList.length == 0) {
                     setScore(-1);
                     setNumRooms(0);
+                    setNumPrecautions(0);
+                    setNumHazards(0);
                 } else {
                     setNumRooms(roomList.length);
                         const personalInfo = JSON.parse(items[0][1]);
@@ -40,45 +42,47 @@ export default function Home({navigation}) {
                         let importantPossible = 0;
                         let precautions = 0;
                         let hazards = 0;
-                        for (let i = 0; i < roomList.length; i++) {
-                            const roomProducts = JSON.parse(JSON.stringify(products[roomList[i].type]));
-                            const notAnswered = questions[roomList[i].type].length - roomList[i].answers.length;
-                            const roomQuestions = JSON.parse(JSON.stringify(roomQuestionNumbers[roomList[i].type]));
+                        let numExclusions = 0;
 
-                            for (let j = 0; j < roomQuestions.length; j++) {
-                                if (roomList[i].answers.includes(roomQuestions[j])) {
-                                    const answerIndex = roomList[i].answers.indexOf(roomQuestions[j]);
-                                    if (exclusions.some(e => e.id == roomQuestions[j] && e.room == roomList[i].type)) {
-                                        const exclusion = exclusions.find(e => e.id == roomQuestions[j]);
-                                        if (personalInfo[exclusion.exclusion] == "true" || personalInfo[exclusion.exclusion] == true || personalInfo[exclusion.exclusion] == "walker" || personalInfo[exclusion.exclusion] == "cane" || personalInfo[exclusion.exclusion] == "wheelchair") {
-                                            if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].includes(questions[roomList[i].type][roomQuestions[j]].question)) {
-                                                importantScore += 1;
-                                                importantPossible += 1;
-                                            } else if (personalInfo.vision && important['Vision'].some(e => e.id == j)) {
-                                                importantScore += 1;
-                                                importantPossible += 1;
-                                            } else if (personalInfo.hearing && important['Hearing'].some(e => e.id == j)) {
-                                                importantScore += 1;
-                                                importantPossible += 1;
-                                            } else if (roomList[i].primary == true || roomList[i].primary == 'true') {
-                                                importantScore += 1;
-                                                importantPossible += 1;
-                                            } else {
-                                                basicScore += 1;
-                                                basicPossible += 1;
-                                            }                    
+                        roomList.forEach(room => {
+                            const roomProducts = JSON.parse(JSON.stringify(products[room.type]));
+                            const notAnswered = questions[room.type].length - room.answers.length;
+                            const roomQuestions = JSON.parse(JSON.stringify(roomQuestionNumbers[room.type]));
+
+                            roomQuestions.forEach(question => {
+                                const answerIndex = room.answers.indexOf(question);
+                                const exclusion = exclusions.find(e => e.id == question && e.room == room.type);
+                                const isExcluded = exclusion && !(personalInfo[exclusion.exclusion] == "true" || personalInfo[exclusion.exclusion] == true || personalInfo[exclusion.exclusion] == "walker" || personalInfo[exclusion.exclusion] == "cane" || personalInfo[exclusion.exclusion] == "wheelchair");
+
+                                if (room.answers.includes(question)) {
+                                    if (isExcluded) {
+                                        if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].includes(questions[room.type][question].question)) {
+                                            importantScore += 1;
+                                            importantPossible += 1;
+                                        } else if (personalInfo.vision && important['Vision'].some(e => e.id == question)) {
+                                            importantScore += 1;
+                                            importantPossible += 1;
+                                        } else if (personalInfo.hearing && important['Hearing'].some(e => e.id == question)) {
+                                            importantScore += 1;
+                                            importantPossible += 1;
+                                        } else if (room.primary == true || room.primary == 'true') {
+                                            importantScore += 1;
+                                            importantPossible += 1;
+                                        } else {
+                                            basicScore += 1;
+                                            basicPossible += 1;
                                         }
                                     } else {
-                                        if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].includes(questions[roomList[i].type][roomQuestions[j]].question)) {
+                                        if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].includes(questions[room.type][question].question)) {
                                             importantScore += 1;
                                             importantPossible += 1;
-                                        } else if (personalInfo.vision && important['Vision'].some(e => e.id == j)) {
+                                        } else if (personalInfo.vision && important['Vision'].some(e => e.id == question)) {
                                             importantScore += 1;
                                             importantPossible += 1;
-                                        } else if (personalInfo.hearing && important['Hearing'].some(e => e.id == j)) {
+                                        } else if (personalInfo.hearing && important['Hearing'].some(e => e.id == question)) {
                                             importantScore += 1;
                                             importantPossible += 1;
-                                        } else if (roomList[i].primary == true || roomList[i].primary == 'true') {
+                                        } else if (room.primary == true || room.primary == 'true') {
                                             importantScore += 1;
                                             importantPossible += 1;
                                         } else {
@@ -87,47 +91,32 @@ export default function Home({navigation}) {
                                         }
                                     }
                                 } else {
-                                    if (exclusions.some(e => e.id == roomQuestions[j] && e.room == roomList[i].type)) {
-                                        const exclusion = exclusions.find(e => e.id == roomQuestions[j]);
-                                        if (personalInfo[exclusion.exclusion] == "true" || personalInfo[exclusion.exclusion] == true || personalInfo[exclusion.exclusion] == "walker" || personalInfo[exclusion.exclusion] == "cane" || personalInfo[exclusion.exclusion] == "wheelchair") {
-                                            if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].includes(questions[roomList[i].type][roomQuestions[j]].question)) {
-                                                importantPossible += 1;
-                                            } else if (personalInfo.vision && important['Vision'].some(e => e.id == j)) {
-                                                importantPossible += 1;
-                                            } else if (personalInfo.hearing && important['Hearing'].some(e => e.id == j)) {
-                                                importantPossible += 1;
-                                            } else if (roomList[i].primary == true || roomList[i].primary == 'true') {
-                                                importantPossible += 1;
-                                            } else {
-                                                basicPossible += 1;
-                                            }
-                                        } else {
-                                            hazards -= 1;
-                                        }
+                                    if (isExcluded) {
+                                        numExclusions += 1;
                                     } else {
-                                        if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].includes(questions[roomList[i].type][roomQuestions[j]].question)) {
+                                        if ((personalInfo.mobility == 'cane' || personalInfo.mobility == 'walker' || personalInfo.mobility == 'wheelchair') && important['Mobility'].includes(questions[room.type][question].question)) {
                                             importantPossible += 1;
-                                        } else if (personalInfo.vision && important['Vision'].some(e => e.id == j)) {
+                                        } else if (personalInfo.vision && important['Vision'].some(e => e.id == question)) {
                                             importantPossible += 1;
-                                        } else if (personalInfo.hearing && important['Hearing'].some(e => e.id == j)) {
+                                        } else if (personalInfo.hearing && important['Hearing'].some(e => e.id == question)) {
                                             importantPossible += 1;
-                                        } else if (roomList[i].primary == true || roomList[i].primary == 'true') {
+                                        } else if (room.primary == true || room.primary == 'true') {
                                             importantPossible += 1;
                                         } else {
                                             basicPossible += 1;
                                         }
                                     }
                                 }
-                                if (roomProducts.some(e => e.hazardID == roomQuestions[j]) && roomList[i].answers.includes(roomQuestions[j])) {
-                                    const index = roomProducts.findIndex(e => e.hazardID == roomQuestions[j]);
+
+                                if (roomProducts.some(e => e.hazardID == question) && room.answers.includes(question)) {
+                                    const index = roomProducts.findIndex(e => e.hazardID == question);
                                     roomProducts.splice(index, 1);
                                 }
-                            }
-                            
-                            precautions += roomProducts.length;
-                            hazards += questions[roomList[i].type].length - roomList[i].answers.length;
-                        }
+                            });
 
+                            precautions += roomProducts.length;
+                            hazards += questions[room.type].length - room.answers.length;
+                        });
                         let finalScore = 0.0;
 
                         if (basicPossible === 0 && importantPossible === 0) {
@@ -141,18 +130,18 @@ export default function Home({navigation}) {
                             const importantWeighted = (importantScore / importantPossible) * 0.6;
                             finalScore = (basicWeighted + importantWeighted) * 100;
                           }
-                          
+                        
                         finalScore = Math.min(100, Math.max(0, finalScore));
-                
+                        finalScore = (finalScore / 2) / 10;
 
                         setNumPrecautions(precautions);
-                        setNumHazards(hazards);
+                        setNumHazards(hazards - numExclusions);
                         if (finalScore == 0 || finalScore == null || finalScore == undefined || isNaN(finalScore)) {
                             setScore(0);
                         } else {
                             setScore(Math.round(finalScore));
                         }
-                }
+                    }
             });
         });
         return loadScore;
@@ -171,15 +160,14 @@ export default function Home({navigation}) {
             style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 10 }}
             >
                 <Text style={styles.header}>Hi there!</Text>
-                {score >= 0 && <Text style={styles.subheader}>Your home is {score > 50 ? (score > 75 ? 'very' : 'somewhat') : 'not'} accessible.</Text>}
+                {score >= 0 && <Text style={styles.subheader}>Your home is {score > 2 ? (score > 3 ? 'very' : 'somewhat') : 'not'} accessible.</Text>}
                 {score < 0 && <Text style={styles.subheader}>Start adding rooms to calculate your score!</Text>}
-                <View style={[styles.scoreContainer, {borderColor: score == -1 ? 'lightblue' : (score > 50 ? (score > 75 ? 'green' : 'orange') : 'red')}]}>
-                    <Text style={styles.score}>{score == -1 ? "N/A" : score}</Text>
+                <View style={[styles.scoreContainer, {borderColor: score == -1 ? 'lightblue' : (score > 2 ? (score > 3 ? 'green' : 'orange') : 'red')}]}>
+                    <Text style={styles.score}>{score == -1 ? "N/A" : score + "/5"}</Text>
                 </View>
                 <TouchableOpacity style={styles.scoreLabel} onPress={async () => {
                     const result = await Share.share({
-                        message: `My home safety score is ${score}! Download the ElderSafe app to improve the safety of your home!`,
-                        // url: 'https://github.com/BobBrown1/eldersafe'
+                        message: `My home safety score is ${score}/5! Download the ElderSafe app to improve the safety of your home!`,
                       });
                 }} >
                     <Text style={styles.scoreLabelText}>Your Current Home Safety Score</Text>

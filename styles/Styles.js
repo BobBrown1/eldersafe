@@ -28,8 +28,10 @@ export const styles = StyleSheet.create({
     },
 
     subheader: {
-      marginHorizontal: verticalScale(20),
+      flex: 1,
       marginTop: verticalScale(10),
+      marginLeft: horizontalScale(20),
+      marginRight: horizontalScale(20),
       fontSize: moderateScale(20),
       color: 'white',
       alignSelf: 'flex-start',
@@ -447,6 +449,14 @@ export const styles = StyleSheet.create({
       color: 'white',
     },
 
+    affiliateNote: {
+      fontSize: moderateScale(15),
+      color: 'white',
+      marginTop: verticalScale(10),
+      marginBottom: verticalScale(20),
+      marginLeft: horizontalScale(20),
+    },
+
     hazardContainer: {
       width: '100%',
       height: '95%',
@@ -495,6 +505,36 @@ export const styles = StyleSheet.create({
 
     hazardRoom: {
       fontSize: moderateScale(15),
+    },
+
+    tipFooter: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '80%',
+    },
+
+    tipFooterText: {
+      fontSize: moderateScale(15),
+      color: 'white',
+    },
+
+    tipFooterButton: {
+      backgroundColor: '#121212',
+      borderWidth: 1,
+      borderColor: 'white',
+      borderRadius: 5,
+      width: '80%',
+      height: verticalScale(40),
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: verticalScale(20),
+    },
+
+    tipFooterButtonText: {
+      color: 'white',
+      fontSize: moderateScale(20),
+      fontWeight: 'bold',
     },
 
   });

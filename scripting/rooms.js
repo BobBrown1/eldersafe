@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // removeItemValue('myRooms')
+// removeItemValue('personalInfo')
+// removeItemValue('firstLoad')
 
 async function removeItemValue(key) {
     try {

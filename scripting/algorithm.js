@@ -131,7 +131,7 @@ export const hazardsDict = {
 export const products = {
     "Bedroom": [
         {name: "Night Light", link: "https://amzn.to/46dzA3P", hazardID: 2,
-        description: "Small, plug-in LEDs lights turn on automatically when they sense motion. Perfect for lighting up hallways, stairways, and bathrooms at night.",
+        description: "Small, plug-in LEDs lights turn on automatically when they sense motion.",
         image: require("../assets/products/night-light.png")
     },
         {name: "Flash Light", link: "https://amzn.to/3PEmA02", hazardID: 3,

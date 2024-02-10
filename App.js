@@ -8,7 +8,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { verticalScale, horizontalScale, moderateScale } from './styles/Styles';
 import * as SplashScreen from 'expo-splash-screen';
-import * as amplitude from '@amplitude/analytics-react-native';
+import Aptabase, { trackEvent } from "@aptabase/react-native";
 
 import {styles} from './styles/Styles'
 import Rooms, {RoomSelect, RoomEditor, RoomAdded, RoomReport} from './pages/Rooms';  
@@ -22,7 +22,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-amplitude.init('837830779321eedaecd961fb5aa8c7e0');
+Aptabase.init("A-US-5290383727");
 
 function HomeScreens({navigation, route}) {
   return (
@@ -193,9 +193,17 @@ export default class App extends React.Component {
   componentDidMount() {
       AsyncStorage.getItem('firstLoad').then((value) => {
         if (value == null || value == undefined) {
-          this.setState({ showRealApp: false, loading: false });  //change
+          this.setState({ showRealApp: false, loading: false });
+          trackEvent("AppLaunch", {
+            firstLoad: "true",
+            time: new Date().toString(),
+          });
         } else {
-          this.setState({ showRealApp: true, loading: false });  //change
+          this.setState({ showRealApp: true, loading: false });
+          trackEvent("AppLaunch", {
+            firstLoad: "false",
+            time: new Date().toString(),
+          });
         }
       });
   }

@@ -11,6 +11,29 @@ export const moderateScale = (size, factor = 0.5) => size + (horizontalScale(siz
 
 export const wstyles = StyleSheet.create({
     // Welcome Page Styles
+    userOptions: {
+        height: "90%",
+        width: "100%",
+        alignItems: 'center',
+        marginTop: verticalScale(50),
+    },
+    optionText: {
+        fontSize: moderateScale(28),
+        color: 'white',
+        textAlign: 'center',
+        paddingHorizontal: horizontalScale(30),
+        paddingVertical: verticalScale(10),
+    },
+    optionButton: {
+        borderColor: 'white',
+        backgroundColor: '#121212',
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        width: "80%",
+        height: "50%",
+        marginVertical: verticalScale(20),
+    },
     ageContainer: {
         marginLeft: horizontalScale(25),
         marginTop: verticalScale(20),
@@ -69,7 +92,7 @@ export const wstyles = StyleSheet.create({
     },
 
     submitContainer: {
-        marginTop: verticalScale(20),
+        marginTop: verticalScale(30),
         width: '100%',
         alignItems: 'center',
     },
