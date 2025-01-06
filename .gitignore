@@ -37,7 +37,5 @@ yarn-error.*
 # other
 google-services.json
 
-package-lock.json
-yarn.lock
-.App.js.swo
+
 eldersafe-public.aab
